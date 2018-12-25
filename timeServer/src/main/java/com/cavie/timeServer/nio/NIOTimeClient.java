@@ -3,8 +3,11 @@ package com.cavie.timeServer.nio;
 public class NIOTimeClient {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		int port = 8080;
 
+		TimeClient timeClient = new TimeClient(port);
+
+		new Thread(timeClient).start();
 	}
 
 }
