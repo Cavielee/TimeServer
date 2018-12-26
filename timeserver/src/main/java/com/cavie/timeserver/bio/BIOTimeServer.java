@@ -25,7 +25,7 @@ public class BIOTimeServer {
 				// 阻塞接受客戶端请求接入
 				socket = server.accept();
 				// 创建线程处理 Socket 请求
-				new Thread(new TimeServerHandler(socket)).start();
+				new Thread(new BIOTimeServerHandler(socket)).start();
 			}
 		} finally {
 			if (server != null) {

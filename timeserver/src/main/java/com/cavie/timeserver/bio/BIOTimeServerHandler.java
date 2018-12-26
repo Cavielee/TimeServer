@@ -13,11 +13,11 @@ import java.util.Date;
  * @author created by Cavielee
  * @date 2018年12月24日 下午6:31:14
  */
-public class TimeServerHandler implements Runnable {
+public class BIOTimeServerHandler implements Runnable {
 
 	private Socket socket;
 
-	public TimeServerHandler(Socket socket) {
+	public BIOTimeServerHandler(Socket socket) {
 		super();
 		this.socket = socket;
 	}
