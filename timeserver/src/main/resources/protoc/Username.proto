@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.cavie.timeserver.netty.proto;
+
+option java_package = "com.cavie.timeserver.netty.proto";
+
+
+message UserRequest {
+  int32 uid = 1;
+  string username = 2;
+  string order = 3;
+}
+
+message TimeResponse {
+  int32 respCode = 1;
+  string time = 2;
+  string errMsg = 3;
+}
