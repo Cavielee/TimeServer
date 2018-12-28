@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+option java_outer_classname = "Time6";
+
+message UserRequest {
+  int32 uid = 1;
+  string username = 2;
+  string order = 3;
+}
+
+message TimeResponse {
+  int32 respCode = 1;
+  string time = 2;
+  string errMsg = 3;
+}
