@@ -32,7 +32,7 @@ public class NettyTimeClient {
 		         @Override
 		         public void initChannel(SocketChannel ch) throws Exception {
 		             ChannelPipeline p = ch.pipeline();
-		             p.addLast(new NettyTimeClentHandler());
+		             p.addLast(new NettyTimeClientHandler());
 		         }
 		     });
 

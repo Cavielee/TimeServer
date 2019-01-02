@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.cavie.timeserver.netty.serialize.protobuf;
+
+option java_package = "com.cavie.timeserver.netty.serialize.protobuf";
+option java_outer_classname = "TimeResponseProto";
+
+message TimeResponse {
+  int32 respCode = 1;
+  string time = 2;
+  string errMsg = 3;
+}

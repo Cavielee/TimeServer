@@ -1,4 +1,7 @@
-package com.cavie.timeserver.netty.serialize.objectdecoder;
+package com.cavie.timeserver.netty.serialize.protobuf;
+
+import com.cavie.timeserver.netty.serialize.protobuf.TimeResponseProto.TimeResponse;
+import com.cavie.timeserver.netty.serialize.protobuf.UserRequestProto.UserRequest.Builder;
 
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -9,16 +12,16 @@ import io.netty.channel.ChannelHandlerContext;
  * @author created by Cavielee
  * @date 2018年12月26日 下午6:33:38
  */
-public class NettyTimeClentHandler extends ChannelDuplexHandler {
+public class NettyTimeClientHandler extends ChannelDuplexHandler {
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		UserRequest req = new UserRequest();
-		req.setOrder("QUERY TIME ORDER");
-		req.setUsername("CavieLee");
+		Builder builder = UserRequestProto.UserRequest.newBuilder();
+		builder.setOrder("QUERY TIME ORDER");
+		builder.setUsername("CavieLee");
 		for (int i = 1; i <= 20; i++) {
-			req.setUid(i);
-			ctx.writeAndFlush(req);
+			builder.setUid(i);
+			ctx.writeAndFlush(builder.build());
 		}
 	}
 

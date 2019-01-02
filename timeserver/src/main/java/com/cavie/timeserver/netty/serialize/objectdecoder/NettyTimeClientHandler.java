@@ -1,7 +1,5 @@
-package com.cavie.timeserver.netty;
+package com.cavie.timeserver.netty.serialize.objectdecoder;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -11,23 +9,27 @@ import io.netty.channel.ChannelHandlerContext;
  * @author created by Cavielee
  * @date 2018年12月26日 下午6:33:38
  */
-public class NettyTimeClentHandler extends ChannelDuplexHandler {
+public class NettyTimeClientHandler extends ChannelDuplexHandler {
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		byte[] req = "QUERY TIME ORDER".getBytes();
-		ByteBuf buf = Unpooled.buffer(req.length);
-		buf.writeBytes(req);
-		ctx.writeAndFlush(buf);
+		UserRequest req = new UserRequest();
+		req.setOrder("QUERY TIME ORDER");
+		req.setUsername("CavieLee");
+		for (int i = 1; i <= 20; i++) {
+			req.setUid(i);
+			ctx.writeAndFlush(req);
+		}
 	}
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		ByteBuf buf = (ByteBuf) msg;
-		byte[] resp = new byte[buf.readableBytes()];
-		buf.readBytes(resp);
-		String body = new String(resp, "UTF-8");
-		System.out.println("Now is : " + body);
+		TimeResponse resp = (TimeResponse) msg;
+		if (0 == resp.getRespCode()) {
+			System.out.println("Now is : " + resp.getTime());
+		} else {
+			System.out.println(resp.getErrMsg());
+		}
 	}
 
 	@Override

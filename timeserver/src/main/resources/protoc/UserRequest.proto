@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.cavie.timeserver.netty.serialize.protobuf;
+
+option java_package = "com.cavie.timeserver.netty.serialize.protobuf";
+option java_outer_classname = "UserRequestProto";
+
+message UserRequest {
+  int32 uid = 1;
+  string username = 2;
+  string order = 3;
+}

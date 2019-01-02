@@ -40,7 +40,7 @@ public class NettyTimeClient {
 		             p.addLast(new ObjectDecoder(1024, 
 		            		 ClassResolvers.cacheDisabled(this.getClass().getClassLoader())));
 		             p.addLast(new ObjectEncoder());
-		             p.addLast(new NettyTimeClentHandler());
+		             p.addLast(new NettyTimeClientHandler());
 		         }
 		     });
 
